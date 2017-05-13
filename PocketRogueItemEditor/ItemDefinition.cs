@@ -12,6 +12,7 @@ namespace PocketRogueItemEditor
         public int[] icon { get; set; }
         public bool stackable { get; set; }
         public string slot { get; set; }
+        public int[] bonuses { get; set; }
 
         public override string ToString()
         {

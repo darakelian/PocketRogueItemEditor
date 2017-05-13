@@ -26,6 +26,16 @@ namespace PocketRogueItemEditor
             //var bindingList = new BindingList<ItemDefinition>(this.definitions);
             //var source = new BindingSource(bList, null);
             //this.itemGridView.DataSource = source;
+            string path = Properties.Settings.Default.JsonFilePath;
+            if (path.Equals(""))
+            {
+                openJsonFile();
+            }
+            else
+            {
+                Console.WriteLine("Parsing existing JSON file.");
+                loadJsonFile();
+            }
         }
 
         //Save to JSON
@@ -70,6 +80,7 @@ namespace PocketRogueItemEditor
         {
             DataGridViewRow row = e != null ? itemGridView.Rows[e.RowIndex] :
                 itemGridView.Rows[itemGridView.Rows.GetFirstRow(DataGridViewElementStates.Selected)];
+            Console.WriteLine("Entering row");
             if (row.Selected)
             {
                 ItemDefinition def = (ItemDefinition)row.DataBoundItem;
@@ -98,22 +109,6 @@ namespace PocketRogueItemEditor
             {
                 CheckBox box = sender as CheckBox;
                 this.ActiveDefinition.stackable = box.Checked;
-            }
-        }
-
-        //Prompt user to locate json file if setting is not set, otherwise load
-        //the json file.
-        private void MainForm_Shown(object sender, EventArgs e)
-        {
-            string path = Properties.Settings.Default.JsonFilePath;
-            if (path.Equals(""))
-            {
-                openJsonFile();
-            }
-            else
-            {
-                Console.WriteLine("Parsing existing JSON file.");
-                loadJsonFile();
             }
         }
 
@@ -286,6 +281,15 @@ namespace PocketRogueItemEditor
                     Console.WriteLine(this.ActiveDefinition.slot);
                 }
             }
+        }
+
+        private void setBonusesButton_Click(object sender, EventArgs e)
+        {
+            if (ActiveDefinition == null || ActiveDefinition.bonuses == null || !ActiveDefinition.bonuses.Any())
+                return;
+
+            BonusesForm bonusForm = new BonusesForm(ActiveDefinition);
+            bonusForm.ShowDialog(this);
         }
     }
 }

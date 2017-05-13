@@ -56,10 +56,16 @@
     <ManifestKeyFile>PocketRogueItemEditor_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -80,6 +86,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BonusesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BonusesForm.Designer.cs">
+      <DependentUpon>BonusesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +107,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BonusesForm.resx">
+      <DependentUpon>BonusesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageForm.resx">
       <DependentUpon>ImageForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,7 +127,13 @@
     </Compile>
     <None Include="packages.config" />
     <None Include="PocketRogueItemEditor_TemporaryKey.pfx" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\DataSources\ImageForm.datasource" />
     <None Include="Properties\DataSources\ItemDefinition.datasource" />
+    <None Include="Properties\DataSources\MainForm.datasource" />
+    <None Include="Properties\DataSources\PocketRogueItemEditor.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\PocketRogueItemEditor.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
